@@ -1,0 +1,170 @@
+ 
+01 Intro Despierta!
+
+Pausa al seg. 26
+Alf: Rayos, tengo frio. deberia colocarme el sweater?
+
+a)Eso no es importante. Explora a tu alrededor.
+b) Si. El frio puede matar a personajes virtuales ¬.¬
+
+Si a:
+    Blanco
+    Reproducir POV Explorar
+    Reanudar Intro Despierta al seg. 27
+Si b:
+    Rojo
+    Reanudar y Cortar al segundo 38
+
+cortar al seg 38
+
+Alf:  Que puedes ver?
+
+===================== Rojo =========================================
+a) Me parecio ver a alguien pasar!
+    Si a:
+    {
+        Alf: Estoy seguro de que no hay nadie aqui
+        Reemplaza por a) Lo ví. Deberias buscarlo
+    }
+b) Revisa aquella habitacion.
+    Si b: 
+        Reproduce Explorar 496
+        
+        Alf: Ahora tengo calor. Me quito el sweater?
+            
+        a) Eso no es importante. Busca al sujeto!
+        b) Ok, señor inconforme. Busca al final del pasillo.
+              Si b: 
+                Cambiar a ==Blanco==
+            
+  Si a:
+                 
+
+
+
+ Alf: Creo que habia una biblioteca. Como quieres que busque?
+                 a) Detalladamente, nesecito pistas para ayudarte a salir.
+                         Si a: 
+                            Reproduce Explorar 493
+                       u) Deberias buscar en esas habitaciones.
+
+                 b) Rapido, tengo poco tiempo para ayudarte a escapar.
+
+                       Si b: 
+                            Reproduce Explorar 491
+                        u) Porque no entraste a las habitaciones?
+                        
+           Alf: Creo que no habia nada. A cual quieres que regrese?
+                a) A la de la izquierda
+                b) A la de la derecha
+                    Si a:
+                        Reproduce Explorar 497
+                        Alf: Te dije que no habia nada. Caminare al final del pasillo...
+                        Saltar a ==pasillo==
+
+               
+                    Si b:
+                        Reproduce GameOver-Capturado
+                   
+
+=========================pasillo=========================
+
+a) Primero entra en la otra habitacion.
+b) Esta bien, tenias razon.
+
+Si a:
+    Alf: Mi intuicion ya te dijo que no habia nada. De verdad quieres que entre?
+    a) Si! b) No. Mejor ve al pasillo...
+            Si a:
+                  Generar Random
+                            Si Random = par {Reproduce game over};
+                            Si Random = impar {nada pasa y continua};
+                            Si Random = SALIDA {Reproduce Win -EscapeFinal};
+
+Si b:
+
+Reproduce Explorar 494
+
+u) Que viste alli atras?
+Alf: Nada una habitacion vacia.
+
+a) Revisa de nuevo.
+Si a:
+                  Generar Random
+                            Si Random = par {Reproduce Explorar 495 y continua};
+                            Si Random = SALIDA {Reproduce Win}
+b) Ok, continua.
+    
+Alf: Sabes qué, da igual si no te parece importante. Me quitare el sweater.
+
+Reproduce Pasillo Steady
+Reproduce Body_515
+=================Blanco=======================================
+Alf:  Que puedes ver?
+
+a) Deberias ver esa habitacion.
+b) Hay alguien detras de ti, ¡Corre!
+    Si a:
+        Reproduce Body_0515
+
+
+    Si b:   
+        Reproduce Run_AdiosSweater   / Si restart > 0 Reproduce Run_505 
+        Reproduce Body_0515
+
+
+
+Alf: Que debo hacer?
+
+=================Encrucijada========
+Reproduce Cruce_0511
+Pausar en seg. 02
+        a) No te detengas continua!
+        b) Detras de ti hay un pasillo. Cambia de rumbo.
+        c) Entra por esa puerta.
+
+        Si a:
+            Reanudar Cruce_0511
+            Reproduce Body_0517
+
+        Si b:
+            Reproduce Pasillo Steady
+
+        Si c:
+            Generar Random
+
+                   Si Random = par {
+                      Reproduce Escape iluminado
+                      Reproduce Win}
+                   Si Random = impar:
+                       Alf: Me estan persiguiendo, tal vez no deberia entrar en una habitacion ahora. 
+            Reanudar Cruce_0511
+            Reproduce Body_0517
+            Reproduce Pasillo Steady
+
+Alf: Mi sweater esta en el piso deberia recogerlo?
+
+        a)  Esta bien, pero no me interesa si te lo pones o no.
+        b) NO. Quieres escapar o que?
+
+        Si b:
+            Reproduce Encrucijada
+        Si a:
+            Reproduce Run_0505
+            Msj creador mostrar progreso:
+            Elegir
+                   Escapar incompleto o Reiniciar
+
+        Si restart >= 3 Reproduce Escape-Final
+                        Reproduce Win
+
+
+
+
+
+
+
+
+
+
+
